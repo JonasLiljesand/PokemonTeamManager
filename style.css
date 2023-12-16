@@ -1,0 +1,26 @@
+* {
+	box-sizing: border-box;
+}
+
+#menuButtonSection {
+	display: flex;
+	flex-wrap: nowrap;
+	padding: 0.5em;
+	border: 0.5em solid black;
+	justify-content: center;
+}
+
+#menuButtonSection button {
+	margin: 1em;
+}
+
+#activeTeamSection {
+	display:flex;
+	flex-direction: column;
+	border: 0.5em;
+	border-color: black;
+}
+.teamPokemonSection {
+	display:flex;
+
+}
