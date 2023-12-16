@@ -6,21 +6,38 @@
 	display: flex;
 	flex-wrap: nowrap;
 	padding: 0.5em;
-	border: 0.5em solid black;
+	border: 0.2em solid black;
 	justify-content: center;
 }
 
 #menuButtonSection button {
 	margin: 1em;
+	padding: 1em;
+
+}
+
+#teamViewButton {
+
+}
+
+#searchViewButton {
+
 }
 
 #activeTeamSection {
 	display:flex;
 	flex-direction: column;
-	border: 0.5em;
-	border-color: black;
+	border: 0.2em solid black;
+
 }
 .teamPokemonSection {
 	display:flex;
+	border: 0.2em solid black;
+	padding: 2em;
+	margin: 1em;
+
+}
+
+#searchAndBench {
 
 }
