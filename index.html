@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title> Pokemon </title>
 	<link rel="stylesheet" href="style.css">
-	<script type="module" src="script.js"></script>
+	<script type="module" src="JS/script.js"></script>
 </head>
 
 
@@ -14,34 +14,38 @@
 <body>
 	<main>
 
-		<section id="menuButtonSection">
+		<section id="menuButtonSection" class="boxSection">
 			<!--visa lagvy-->
 			<button id="teamViewButton">Laget</button>
 			<!--visa sök+reserv-->
 			<button id="searchViewButton">knapp2</button>
 
 		</section>
-		<section id="activeTeamSection">
-			<section class="teamPokemonSection" id="active1">1</section>
-			<section class="teamPokemonSection" id="active2">1</section>
-			<section class="teamPokemonSection" id="active3">1</section>
 
-		</section>
-
-		<section id="searchAndBench">
+		<section id="searchAndBench" class="boxSection">
 			<!--sökfält-->
 			<form>
-				<input type="text" placeholder="search">
-				<button >Add</button><!--lägg till i reservlistan-->
+				<input id="pokedex" type="text" placeholder="search">
+				<button >Add</button><!--lägg till i reservlistan, skapa innerelement-->
 			</form>
 			<!--reserver-->
+			<section id="reservList">
+
+			</section>
 			<section>
 				<ol>
 
 				</ol>
 			</section>
-		</section>
 
+		</section>
+		<section id="activeTeamSection" class="boxSection">
+					<!--hämta från reservlistan, hämta/kopiera innerelement-->
+					<section class="teamPokemonSection, boxSection" id="active1">1</section>
+					<section class="teamPokemonSection, boxSection" id="active2">1</section>
+					<section class="teamPokemonSection, boxSection" id="active3">1</section>
+
+		</section>
 
 
 	</main>

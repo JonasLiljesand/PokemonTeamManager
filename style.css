@@ -2,12 +2,18 @@
 	box-sizing: border-box;
 }
 
-#menuButtonSection {
-	display: flex;
-	flex-wrap: nowrap;
+.boxSection {
 	padding: 0.5em;
 	border: 0.2em solid black;
 	justify-content: center;
+	border-radius: 0.5em;
+
+}
+
+#menuButtonSection {
+	display: flex;
+	flex-wrap: nowrap;
+
 }
 
 #menuButtonSection button {
@@ -39,5 +45,6 @@
 }
 
 #searchAndBench {
-
+	display: none;
+	justify-content: center;
 }
