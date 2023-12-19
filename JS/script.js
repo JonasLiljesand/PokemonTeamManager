@@ -6,7 +6,8 @@ const teamViewbtn = document.getElementById('teamViewButton')
 const searchViewBtn = document.getElementById('searchViewButton')
 const viewTeamSec = document.getElementById('activeTeamSection')
 const viewSearchAndBenchSec = document.getElementById('searchAndBench')
-let pokedex = document.getElementById('pokedex')
+const pokemonDataTemp =document.querySelector('pokemonDataTemp')
+let pokedex = document.getElementById('pokemonName')
 let search = ''
 
 teamViewbtn.addEventListener("click", () => {
@@ -16,27 +17,14 @@ teamViewbtn.addEventListener("click", () => {
 
 searchViewBtn.addEventListener("click", () => {
 	viewSearchAndBenchSec.style.display = 'block'
-	viewTeamSec.style.display = 'none'
+	viewTeamSec.style.display = 'none'})
 
 
-async function searchPokemon() {
-	// const Name = document.getElementById('pokedex')
-
-	const resp = await fetch('https://pokeapi.co/api/v2/pokemon/ditto')
-
-
-console.log(resp.value);
-
-}
-
-searchPokemon()
-
-
-	})
-
-
-function match() {
-	const pokeMatch = sample.results.name.filter(x => x.toLowerCase().includes(search))
-	console.log(pokeMatch);
-
-}
+fetch("https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0")
+      .then(resp => resp.json()).then(data => {
+		data.results.forEach(pokemon => {
+		const pokeListItem = pokemonDataTemp.textContent.cloneNode(true).children [0]
+		const searchListName =
+		console.log(pokemon);
+		})
+	  })
