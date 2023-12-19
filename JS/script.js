@@ -24,20 +24,30 @@ searchViewBtn.addEventListener("click", () => {
 
 
 
-searchField.addEventListener("input", e => {
-	const value = e.target.value
-	console.log(value);
-})
+
 
 
 fetch("https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0")
       .then(resp => resp.json())
 	  .then(data => {
-		// pokemon = data.map{
-		data.results.forEach(pokemon => {
+		pokemon = data.results.map(pokemon => {
 		const pokeListItem = pokemonDataTemp.content.cloneNode(true).children[0]
-		const listItemName = pokemon.name
+
 		// const searchListName =
-		console.log(listItemName);
+		// console.log(pokemon.name);
+		return {name: pokemon.name}
+
+
+
 		})
 	  })
+
+searchField.addEventListener("input", e => {
+	const value = e.target.value.toLowerCase()
+
+	pokemon.forEach(pokemon => {
+		const matchesSearch = pokemon.name.includes(value)
+		console.log(matchesSearch.name);
+	})
+
+})
