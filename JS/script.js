@@ -6,10 +6,12 @@ const teamViewbtn = document.getElementById('teamViewButton')
 const searchViewBtn = document.getElementById('searchViewButton')
 const viewTeamSec = document.getElementById('activeTeamSection')
 const viewSearchAndBenchSec = document.getElementById('searchAndBench')
-const pokemonDataTemp =document.querySelector('pokemonDataTemp')
+const pokemonDataTemp =document.getElementById('pokemonDataTemp')
 const searchField = document.getElementById('pokemonSearchByName')
 let pokedex = document.getElementById('pokemonName')
 let search = ''
+
+let pokemon = []
 
 teamViewbtn.addEventListener("click", () => {
 	viewSearchAndBenchSec.style.display = 'none'
@@ -20,6 +22,8 @@ searchViewBtn.addEventListener("click", () => {
 	viewSearchAndBenchSec.style.display = 'block'
 	viewTeamSec.style.display = 'none'})
 
+
+
 searchField.addEventListener("input", e => {
 	const value = e.target.value
 	console.log(value);
@@ -29,9 +33,11 @@ searchField.addEventListener("input", e => {
 fetch("https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0")
       .then(resp => resp.json())
 	  .then(data => {
+		// pokemon = data.map{
 		data.results.forEach(pokemon => {
-		const pokeListItem = pokemonDataTemp.textContent.cloneNode(true).children [0]
-		const searchListName =
-		console.log(pokemon);
+		const pokeListItem = pokemonDataTemp.content.cloneNode(true).children[0]
+		const listItemName = pokemon.name
+		// const searchListName =
+		console.log(listItemName);
 		})
 	  })
