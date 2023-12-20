@@ -4,24 +4,36 @@ import { sample } from "./pokemonSample.js"
 
 const teamViewbtn = document.getElementById('teamViewButton')
 const searchViewBtn = document.getElementById('searchViewButton')
+const reservViewBtn = document.getElementById('reservButton')
 const viewTeamSec = document.getElementById('activeTeamSection')
 const viewSearchAndBenchSec = document.getElementById('searchAndBench')
+const viewReservSec = document.getElementById('reservSec')
 const pokemonDataTemp =document.getElementById('pokemonDataTemp')
 const searchField = document.getElementById('pokemonSearchByName')
 const resultsDiv = document.getElementById("resultsDiv");
 let pokedex = document.getElementById('pokemonName')
+const reservList = []
 let search = ''
 
 let pokemon = []
+let filterName = {}
 
 teamViewbtn.addEventListener("click", () => {
 	viewSearchAndBenchSec.style.display = 'none'
 	viewTeamSec.style.display = 'block'
+	viewReservSec.style.display = 'none'
 })
 
 searchViewBtn.addEventListener("click", () => {
 	viewSearchAndBenchSec.style.display = 'block'
-	viewTeamSec.style.display = 'none'})
+	viewTeamSec.style.display = 'none'
+	viewReservSec.style.display = 'none'})
+
+reservViewBtn.addEventListener("click", () => {
+	viewSearchAndBenchSec.style.display = 'none'
+	viewTeamSec.style.display = 'none'
+	viewReservSec.style.display = 'block'
+	})
 
 
 
@@ -55,5 +67,13 @@ searchField.addEventListener("input", e => {
 		pokeListItem.textContent = pokemon.name;
 		resultsDiv.appendChild(pokeListItem)
 	})
+
+})
+
+searchField.addEventListener("keyup", p => {
+	if(p.key === "Enter" || filterName.length === 1) {
+		reservList.push(filterName)
+		console.log(reservList.);
+	}
 
 })
