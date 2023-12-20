@@ -73,7 +73,7 @@ searchField.addEventListener("input", e => {
 searchField.addEventListener("keyup", p => {
 	if(p.key === "Enter" || filterName.length === 1) {
 		reservList.push(filterName)
-		console.log(reservList.);
+		console.log(reservList);
 	}
 
 })

@@ -30,6 +30,10 @@
 
 }
 
+#reservButton {
+
+}
+
 #activeTeamSection {
 	display:flex;
 	flex-direction: column;
@@ -48,3 +52,4 @@
 	display: none;
 	justify-content: center;
 }
+
