@@ -10,7 +10,6 @@ body {
 .boxSection {
 	padding: 0.5em;
 	border: 0.2em solid #ffcc00;
-	/* Pikachu yellow border */
 	justify-content: center;
 	border-radius: 0.5em;
 	background-color: #f9f9f9;
@@ -69,4 +68,29 @@ body {
 #searchAndBench {
 	display: none;
 	justify-content: center;
+	margin: 1em;
+}
+
+#pokemonSearchByName {
+	margin: 1em;
+	padding: 0.8em;
+	border: 0.2em solid #3399ff;
+	/* Squirtle blue border color */
+	border-radius: 0.3em;
+	font-size: 1em;
+	background-color: #ffffff;
+	/* White background */
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	/* Subtle box shadow */
+}
+
+#pokemonSearchByName::placeholder {
+	color: #666;
+
+}
+
+#pokemonSearchByName:focus {
+	outline: none;
+	border-color: #0066cc;
+
 }

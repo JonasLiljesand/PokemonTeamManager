@@ -56,14 +56,16 @@ searchField.addEventListener("input", e => {
 
 	resultsDiv.innerHTML = "";
 
+	for(let i = 0; i < 5; i++) {
 	filterName.forEach(pokemon => {
 		const pokeListItem = document.createElement('div');
 		pokeListItem.textContent = pokemon.name;
 		resultsDiv.appendChild(pokeListItem)
 		// console.log(pokeListItem);
+		})
 
 
-	})
+	}
 
 	searchField.addEventListener("keyup", enter => {
 		enter.preventDefault();
