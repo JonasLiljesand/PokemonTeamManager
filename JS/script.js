@@ -16,7 +16,7 @@ const reservList = []
 let search = ''
 
 let pokemon = []
-let filterName = {}
+let filterName = []
 
 teamViewbtn.addEventListener("click", () => {
 	viewSearchAndBenchSec.style.display = 'none'
@@ -58,10 +58,10 @@ fetch("https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0")
 
 searchField.addEventListener("input", e => {
 	const value = e.target.value.toLowerCase();
-	const filterName = pokemon.filter(x => x.name.includes(value))
+	filterName = pokemon.filter(x => x.name.includes(value))
 
 	resultsDiv.innerHTML = "";
-
+	//TODO: begränsa antalet matchningar till ~10-15
 	filterName.forEach(pokemon => {
 		const pokeListItem = document.createElement('div');
 		pokeListItem.textContent = pokemon.name;
@@ -70,10 +70,13 @@ searchField.addEventListener("input", e => {
 
 })
 
-searchField.addEventListener("keyup", p => {
-	if(p.key === "Enter" || filterName.length === 1) {
-		reservList.push(filterName)
-		console.log(reservList);
+
+console.log("Filter Name Length:", filterName.length);
+searchField.addEventListener("keydown", enter => {
+	if(enter.key === "Enter") {
+		console.log("hej");
+		reservList.push(filterName[0])
+		console.log(reservList[0].name);
 	}
 
 })
