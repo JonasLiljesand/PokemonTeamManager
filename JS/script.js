@@ -12,11 +12,11 @@ const pokemonDataTemp =document.getElementById('pokemonDataTemp')
 const searchField = document.getElementById('pokemonSearchByName')
 const resultsDiv = document.getElementById("resultsDiv");
 let pokedex = document.getElementById('pokemonName')
-const reservList = []
-let search = ''
+
 
 let pokemon = []
-let filterName = {}
+let filterName = []
+const reservList = []
 
 teamViewbtn.addEventListener("click", () => {
 	viewSearchAndBenchSec.style.display = 'none'
@@ -44,13 +44,7 @@ fetch("https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0")
       .then(resp => resp.json())
 	  .then(data => {
 		pokemon = data.results.map(pokemon => {
-		// const pokeListItem = pokemonDataTemp.content.cloneNode(true).children[0]
-
-		// // const searchListName =
-		// // console.log(pokemon.name);
 		return {name: pokemon.name}
-
-
 
 		})
 	  })
@@ -66,14 +60,27 @@ searchField.addEventListener("input", e => {
 		const pokeListItem = document.createElement('div');
 		pokeListItem.textContent = pokemon.name;
 		resultsDiv.appendChild(pokeListItem)
+		// console.log(pokeListItem);
+
+
 	})
 
+	searchField.addEventListener("keyup", enter => {
+		enter.preventDefault();
+		if(enter.key === "Enter" || filterName.length === 1) {
+		console.log("Något händer");
+		reservList.push(...filterName)
+		console.log(reservList);
+		}
+
+	})
 })
 
-searchField.addEventListener("keyup", p => {
-	if(p.key === "Enter" || filterName.length === 1) {
-		reservList.push(filterName)
-		console.log(reservList.);
-	}
+// searchField.addEventListener("keyup", enter => {
+// 	if(enter.key === "Enter") {
+// 		console.log("Något händer");
+// 		reservList.push(...filterName)
+// 		console.log(reservList);
+// 	}
 
-})
+// })
