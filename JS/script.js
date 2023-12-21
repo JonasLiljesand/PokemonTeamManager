@@ -13,6 +13,7 @@ const searchField = document.getElementById('pokemonSearchByName')
 const resultsDiv = document.getElementById("resultsDiv");
 let pokedex = document.getElementById('pokemonName')
 const reservList = []
+const teamList []
 let search = ''
 
 let pokemon = []
@@ -44,10 +45,6 @@ fetch("https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0")
       .then(resp => resp.json())
 	  .then(data => {
 		pokemon = data.results.map(pokemon => {
-		// const pokeListItem = pokemonDataTemp.content.cloneNode(true).children[0]
-
-		// // const searchListName =
-		// // console.log(pokemon.name);
 		return {name: pokemon.name}
 
 
@@ -75,8 +72,8 @@ console.log("Filter Name Length:", filterName.length);
 searchField.addEventListener("keydown", enter => {
 	if(enter.key === "Enter") {
 		console.log("hej");
-		reservList.push(filterName[0])
-		console.log(reservList[0].name);
+		teamList.push(filterName[0])
+		console.log(teamList[0].name);
 	}
 
 })
