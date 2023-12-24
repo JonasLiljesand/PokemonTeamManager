@@ -18,6 +18,7 @@ let search = ''
 
 let pokemon = []
 let filterName = []
+const reservList = []
 
 teamViewbtn.addEventListener("click", () => {
 	viewSearchAndBenchSec.style.display = 'none'
@@ -46,8 +47,6 @@ fetch("https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0")
 	  .then(data => {
 		pokemon = data.results.map(pokemon => {
 		return {name: pokemon.name}
-
-
 
 		})
 	  })
