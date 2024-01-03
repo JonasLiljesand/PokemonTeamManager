@@ -9,7 +9,7 @@ const viewTeamSec = document.getElementById('activeTeamSection')
 const viewSearchAndBenchSec = document.getElementById('searchAndBench')
 const viewReservSec = document.getElementById('reservSec')
 const searchField = document.getElementById('pokemonSearchByName')
-let nameField = document.getElementById('nameField')
+// let nameField = document.getElementById('nameField')
 const resultsDiv = document.getElementById("resultsDiv");
 const active1 = document.getElementById('active1')
 let pokedex = document.getElementById('pokemonName')
@@ -40,46 +40,6 @@ reservViewBtn.addEventListener("click", () => {
 
 
 
-// 	async function fetchPokemonData() {
-//   try {
-//     const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=100");
-//     const data = await response.json();
-
-//     const pokemonList = data.results;
-
-//     const pokemonData = await Promise.all(pokemonList.map(async (pokemon) => {
-//       const response = await fetch(pokemon.url);
-//       const pokemonDetails = await response.json();
-
-//       return {
-//         name: pokemonDetails.name,
-//         image: pokemonDetails.sprites.front_default,
-//       };
-//     }));
-// 	   console.log(pokemonData);
-//   } catch (error) {
-//     console.error('Error fetching data', error);
-//   }
-// }
-
-
-
-// fetch("https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0")
-//       .then(resp => resp.json())
-// 	  .then(data => {
-// 		pokemon = data.results.map(pokemon => {
-// 		return {name: pokemon.name, id: pokemon.id}
-// 		// return {image: pokemon.sprites.front_default}
-
-// 		})
-
-// 	//  pokemon = data.results.map(pokemon => ({
-//     //   name: pokemon.name,
-//     //   image: pokemon.sprites.front_default
-//     // 	}));
-// 		console.log(pokemon.length);
-// 	  })
-// 	  .catch(error => console.error('error fetching data', error))
 
 
 async function fetchPokemonData() {
@@ -121,12 +81,14 @@ async function getPokemon() {
 
 getPokemon();
 
-function egetNamn() {
-	if (nameField.value.length > 0) {
-		pokemon.specialNamn = nameField.value
-		console.log(pokemon.specialNamn);
-	}
-}
+// function egetNamn(valdPokemon) {
+// 	console.log("egetNamn blir callat");
+// 	console.log("nameField.value:", nameField.value);
+// 	if (nameField.value.length >= 1) {
+// 		valdPokemon.specialNamn = nameField.value
+// 		console.log(valdPokemon.specialNamn);
+// 	}
+// }
 
 
 
@@ -142,11 +104,20 @@ searchField.addEventListener("input", e => {
 
 		// const pokeImage = document.createElement('img')
 		// pokeImage = pokemon.image
-		nameField = document.createElement('input',)
+		const nameField = document.createElement('input',)
 		nameField.placeholder = `Namnge din ${pokemon.name}`
 		const addBtn = document.createElement('button')
 		addBtn.textContent = 'lägg till i lag'
-		addBtn.addEventListener("click", () => egetNamn(pokemon))
+		addBtn.addEventListener("click", () => {
+			if (nameField.value.length >= 1) {
+					console.log("nameField.value:", nameField.value);
+					pokemon.specialNamn = nameField.value
+					console.log(pokemon.specialNamn);
+				}
+				// teamList.push(pokemon)
+				addToTeam(pokemon)
+				console.log(teamList);
+			})
 
 
 		// pokeListItem.appendChild(pokeImage)
@@ -160,27 +131,29 @@ searchField.addEventListener("input", e => {
 
 
 
-console.log("Filter Name Length:", filterName.length);
-searchField.addEventListener("keydown", enter => {
-	if(enter.key === "Enter" && filterName.length === 1) {
-		if(nameField.value !== '' ) {
-			filterName[0].nameField = nameField.value;
-		}
-		// console.log("test");
-		teamList.push(filterName)
-		console.log(teamList.length);
-		// console.log(teamList[0].nameField)
-		// console.log([]);
-		addToTeam()
-	}
-
-})
-
-
-
-
-// function addToTeam() {
-// 	if(active1.innerHTML === '' ) {
-// 		document.getElementById('active1').innerHTML = teamList[0].name
+// console.log("Filter Name Length:", filterName.length);
+// searchField.addEventListener("keydown", enter => {
+// 	if(enter.key === "Enter" && filterName.length === 1) {
+// 		if(nameField.value !== '' ) {
+// 			filterName[0].nameField = nameField.value;
+// 		}
+// 		// console.log("test");
+// 		teamList.push(filterName)
+// 		console.log(teamList.length);
+// 		// console.log(teamList[0].nameField)
+// 		// console.log([]);
+// 		addToTeam()
 // 	}
-// }
+
+// })
+
+
+
+function addToTeam(valdPokemon) {
+	if(teamList.length < 3) {
+	teamList.push(valdPokemon)
+	} else {
+		reservList.push(valdPokemon)
+		console.log(reservList);
+	}
+}
