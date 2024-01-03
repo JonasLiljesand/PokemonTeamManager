@@ -19,8 +19,8 @@ let pokedex = document.getElementById('pokemonName')
 // const pokemon3 = document.getElementById('active3')
 const reservListSec = document.getElementById('reservListaSec')
 
-const reservList = []
-const teamList = []
+let reservList = []
+let teamList = []
 let search = ''
 
 let pokemon = []
@@ -146,7 +146,8 @@ function addToTeam(valdPokemon) {
 	teamList.push(valdPokemon)
 	console.log("längd på teamlista", + teamList.length);
 	visaTeam()
-	TeamSizeCounter.innerHTML = `<p>${teamList.length}/3</p>`
+	teamSize()
+
 	} else {
 		createAndAddToReservList(valdPokemon)
 	}
@@ -163,7 +164,7 @@ if(teamList.length > 0) {
 	const SpecialnameHTML = `<p>${teamList[0].specialNamn}</p>`
 	const pokemonNameHTML = `<p>${teamList[0].name}</p>`
 	if(teamList[0].specialNamn !== undefined) {
-	pokemon1.innerHTML = pokeImgHTML + SpecialnameHTML + pokemonNameHTML
+	pokemon1.innerHTML = pokeImgHTML + SpecialnameHTML + pokemonNameHTML;
 	} else {
 		pokemon1.innerHTML = pokeImgHTML + pokemonNameHTML
 	}
@@ -200,6 +201,17 @@ if(teamList.length > 0) {
 	} else {
 		pokemon3.innerHTML = '';
 	}
+
+	if(pokemon1.innerHTML !== '') {
+		pokemon1.appendChild(kickBtnFun(teamList[0]))
+	}
+	if(pokemon2.innerHTML !== '') {
+		pokemon2.appendChild(kickBtnFun(teamList[1]))
+	}
+	if(pokemon3.innerHTML !== '') {
+		pokemon3.appendChild(kickBtnFun(teamList[2]))
+	}
+
 }
 
 function createAndAddToReservList(reservPokemon) {
@@ -214,5 +226,29 @@ function createAndAddToReservList(reservPokemon) {
 	});
 	reservListSec.appendChild(ReservUl)
 
+
+}
+
+function kickBtnFun(pokemon2Kick) {
+	const kickBtn = document.createElement('button')
+		kickBtn.textContent = 'Ta bort från lag'
+		kickBtn.addEventListener("click", () => {
+			teamList = teamList.filter( pokemon => pokemon !== pokemon2Kick)
+
+
+				console.log(teamList);
+				visaTeam()
+				teamSize()
+			})
+
+		return kickBtn
+
+}
+
+function teamSize() {
+	TeamSizeCounter.innerHTML = `<p>${teamList.length}/3</p>`
+}
+
+function addBtnFun() {
 
 }
