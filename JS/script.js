@@ -9,7 +9,7 @@ const viewTeamSec = document.getElementById('activeTeamSection')
 const viewSearchAndBenchSec = document.getElementById('searchAndBench')
 const viewReservSec = document.getElementById('reservSec')
 const searchField = document.getElementById('pokemonSearchByName')
-// const nameField = document.getElementById('nameField')
+let nameField = document.getElementById('nameField')
 const resultsDiv = document.getElementById("resultsDiv");
 const active1 = document.getElementById('active1')
 let pokedex = document.getElementById('pokemonName')
@@ -89,12 +89,16 @@ async function fetchPokemonData() {
 
         const pokePromises = data.results.map(async pokemon => {
             const pokemonResp = await fetch(pokemon.url);
-            const pokemon = await pokemonResp.json();
+            // const enskildPokemonData = await pokemonResp.json();
 
             return {
                 name: pokemon.name,
                 id: pokemon.id,
                 // image: pokemon.sprites.front_default
+
+			// 	 sprites: {
+            // front_default: sprites.front_default,
+        	// 	},
             };
         });
 
@@ -117,7 +121,12 @@ async function getPokemon() {
 
 getPokemon();
 
-
+function egetNamn() {
+	if (nameField.value.length > 0) {
+		pokemon.specialNamn = nameField.value
+		console.log(pokemon.specialNamn);
+	}
+}
 
 
 
@@ -133,10 +142,12 @@ searchField.addEventListener("input", e => {
 
 		// const pokeImage = document.createElement('img')
 		// pokeImage = pokemon.image
-		const nameField = document.createElement('input',)
+		nameField = document.createElement('input',)
 		nameField.placeholder = `Namnge din ${pokemon.name}`
 		const addBtn = document.createElement('button')
 		addBtn.textContent = 'lägg till i lag'
+		addBtn.addEventListener("click", () => egetNamn(pokemon))
+
 
 		// pokeListItem.appendChild(pokeImage)
 		pokeListItem.appendChild(nameField)
@@ -146,6 +157,7 @@ searchField.addEventListener("input", e => {
 	})
 
 })
+
 
 
 console.log("Filter Name Length:", filterName.length);
