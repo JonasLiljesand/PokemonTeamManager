@@ -73,3 +73,7 @@ body {
 .pokemonSearchByName {
 
 }
+
+.nameField {
+	width: 3em;
+}

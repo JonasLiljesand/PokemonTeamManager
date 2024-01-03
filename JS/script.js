@@ -6,6 +6,7 @@ const teamViewbtn = document.getElementById('teamViewButton')
 const searchViewBtn = document.getElementById('searchViewButton')
 const reservViewBtn = document.getElementById('reservButton')
 const viewTeamSec = document.getElementById('activeTeamSection')
+const TeamSizeCounter = document.getElementById('teamSizeCounterSec')
 const viewSearchAndBenchSec = document.getElementById('searchAndBench')
 const viewReservSec = document.getElementById('reservSec')
 const searchField = document.getElementById('pokemonSearchByName')
@@ -14,8 +15,10 @@ const resultsDiv = document.getElementById("resultsDiv");
 const active1 = document.getElementById('active1')
 let pokedex = document.getElementById('pokemonName')
 // const pokemon1 = document.getElementById('active1')
-const pokemon2 = document.getElementById('active2')
-const pokemon3 = document.getElementById('active3')
+// const pokemon2 = document.getElementById('active2')
+// const pokemon3 = document.getElementById('active3')
+const reservListSec = document.getElementById('reservListaSec')
+
 const reservList = []
 const teamList = []
 let search = ''
@@ -35,11 +38,11 @@ searchViewBtn.addEventListener("click", () => {
 	viewTeamSec.style.display = 'none'
 	viewReservSec.style.display = 'none'})
 
-reservViewBtn.addEventListener("click", () => {
-	viewSearchAndBenchSec.style.display = 'none'
-	viewTeamSec.style.display = 'none'
-	viewReservSec.style.display = 'block'
-	})
+// reservViewBtn.addEventListener("click", () => {
+// 	viewSearchAndBenchSec.style.display = 'none'
+// 	viewTeamSec.style.display = 'none'
+// 	viewReservSec.style.display = 'block'
+// 	})
 
 
 
@@ -103,12 +106,16 @@ searchField.addEventListener("input", e => {
 	//TODO: begränsa antalet matchningar till ~10-15
 	filterName.forEach(pokemon => {
 		const pokeListItem = document.createElement('div');
-		pokeListItem.textContent = pokemon.name + pokemon.id;
+		pokeListItem.textContent = pokemon.name;
 
 		// const pokeImage = document.createElement('img')
 		// pokeImage = pokemon.image
 		const nameField = document.createElement('input',)
 		nameField.placeholder = `Namnge din ${pokemon.name}`
+
+		nameField.style.width = '10em'
+
+
 		const addBtn = document.createElement('button')
 		addBtn.textContent = 'lägg till i lag'
 		addBtn.addEventListener("click", () => {
@@ -140,9 +147,9 @@ function addToTeam(valdPokemon) {
 	teamList.push(valdPokemon)
 	console.log("längd på teamlista", + teamList.length);
 	visaTeam()
+	TeamSizeCounter.innerHTML = `<p>${teamList.length}/3</p>`
 	} else {
-		reservList.push(valdPokemon)
-		console.log(reservList);
+		createAndAddToReservList()
 	}
 }
 
@@ -194,4 +201,10 @@ if(teamList.length > 0) {
 	} else {
 		pokemon3.innerHTML = '';
 	}
+}
+
+function createAndAddToReservList() {
+	reservList.push(valdPokemon)
+		console.log(reservList);
+
 }
