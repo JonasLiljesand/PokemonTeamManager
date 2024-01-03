@@ -115,7 +115,6 @@ searchField.addEventListener("input", e => {
 
 		nameField.style.width = '10em'
 
-
 		const addBtn = document.createElement('button')
 		addBtn.textContent = 'lägg till i lag'
 		addBtn.addEventListener("click", () => {
@@ -149,7 +148,7 @@ function addToTeam(valdPokemon) {
 	visaTeam()
 	TeamSizeCounter.innerHTML = `<p>${teamList.length}/3</p>`
 	} else {
-		createAndAddToReservList()
+		createAndAddToReservList(valdPokemon)
 	}
 }
 
@@ -203,8 +202,17 @@ if(teamList.length > 0) {
 	}
 }
 
-function createAndAddToReservList() {
-	reservList.push(valdPokemon)
-		console.log(reservList);
+function createAndAddToReservList(reservPokemon) {
+	reservList.push(reservPokemon)
+	console.log(reservList.length);
+
+	let ReservUl = document.createElement("ul")
+
+	reservList.forEach(pokemon => {
+
+		ReservUl.innerHTML = pokemon.name
+	});
+	reservListSec.appendChild(ReservUl)
+
 
 }
