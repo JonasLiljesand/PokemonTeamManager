@@ -52,12 +52,12 @@ async function fetchPokemonData() {
 
         const pokePromises = data.results.map(async pokemon => {
             const pokemonResp = await fetch(pokemon.url);
-            // const enskildPokemonData = await pokemonResp.json();
+            const enskildPokemonData = await pokemonResp.json();
 
             return {
-                name: pokemon.name,
-                id: pokemon.id,
-                // image: pokemon.sprites.front_default
+                name: enskildPokemonData.name,
+                id: enskildPokemonData.id,
+                image: enskildPokemonData.sprites.front_default
 
 			// 	 sprites: {
             // front_default: sprites.front_default,
@@ -134,23 +134,6 @@ searchField.addEventListener("input", e => {
 
 
 
-// console.log("Filter Name Length:", filterName.length);
-// searchField.addEventListener("keydown", enter => {
-// 	if(enter.key === "Enter" && filterName.length === 1) {
-// 		if(nameField.value !== '' ) {
-// 			filterName[0].nameField = nameField.value;
-// 		}
-// 		// console.log("test");
-// 		teamList.push(filterName)
-// 		console.log(teamList.length);
-// 		// console.log(teamList[0].nameField)
-// 		// console.log([]);
-// 		addToTeam()
-// 	}
-
-// })
-
-
 //Lägger till pokemon i aktivts team om plats finnns, pushar till reserv annars
 function addToTeam(valdPokemon) {
 	if(teamList.length < 3) {
@@ -170,12 +153,13 @@ function visaTeam() {
 
 if(teamList.length > 0) {
 	console.log("nammnet på pokemonen är", teamList[0].name);
+	const pokeImgHTML = `<img src="${teamList[0].image}"/>`
 	const SpecialnameHTML = `<p>${teamList[0].specialNamn}</p>`
 	const pokemonNameHTML = `<p>${teamList[0].name}</p>`
 	if(teamList[0].specialNamn !== undefined) {
-	pokemon1.innerHTML = SpecialnameHTML + pokemonNameHTML
+	pokemon1.innerHTML = pokeImgHTML + SpecialnameHTML + pokemonNameHTML
 	} else {
-		pokemon1.innerHTML =  pokemonNameHTML
+		pokemon1.innerHTML = pokeImgHTML + pokemonNameHTML
 	}
 	} else {
 		pokemon1.innerHTML = '';
@@ -184,12 +168,13 @@ if(teamList.length > 0) {
 	if (teamList.length > 1) {
 
 	console.log("nammnet på pokemonen är", teamList[1].name);
+	const pokeImgHTML = `<img src="${teamList[1].image}"/>`
 	const SpecialnameHTML = `<p>${teamList[1].specialNamn}</p>`
 	const pokemonNameHTML = `<p>${teamList[1].name}</p>`
 	if(teamList[1].specialNamn !== undefined) {
-	pokemon2.innerHTML = SpecialnameHTML + pokemonNameHTML
+	pokemon2.innerHTML = pokeImgHTML + SpecialnameHTML + pokemonNameHTML
 	} else {
-		pokemon2.innerHTML =  pokemonNameHTML
+		pokemon2.innerHTML = pokeImgHTML + pokemonNameHTML
 	}
 	} else {
 		pokemon2.innerHTML = '';
@@ -198,12 +183,13 @@ if(teamList.length > 0) {
 	if (teamList.length > 2) {
 
 	console.log("nammnet på pokemonen är", teamList[2].name);
+	const pokeImgHTML = `<img src="${teamList[2].image}"/>`
 	const SpecialnameHTML = `<p>${teamList[2].specialNamn}</p>`
 	const pokemonNameHTML = `<p>${teamList[2].name}</p>`
 	if(teamList[2].specialNamn !== undefined) {
-	pokemon3.innerHTML = SpecialnameHTML + pokemonNameHTML
+	pokemon3.innerHTML = pokeImgHTML + SpecialnameHTML + pokemonNameHTML
 	} else {
-		pokemon3.innerHTML =  pokemonNameHTML
+		pokemon3.innerHTML = pokeImgHTML + pokemonNameHTML
 	}
 	} else {
 		pokemon3.innerHTML = '';
