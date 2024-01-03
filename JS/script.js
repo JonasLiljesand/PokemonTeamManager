@@ -13,6 +13,9 @@ const searchField = document.getElementById('pokemonSearchByName')
 const resultsDiv = document.getElementById("resultsDiv");
 const active1 = document.getElementById('active1')
 let pokedex = document.getElementById('pokemonName')
+// const pokemon1 = document.getElementById('active1')
+const pokemon2 = document.getElementById('active2')
+const pokemon3 = document.getElementById('active3')
 const reservList = []
 const teamList = []
 let search = ''
@@ -148,12 +151,61 @@ searchField.addEventListener("input", e => {
 // })
 
 
-
+//Lägger till pokemon i aktivts team om plats finnns, pushar till reserv annars
 function addToTeam(valdPokemon) {
 	if(teamList.length < 3) {
 	teamList.push(valdPokemon)
+	console.log("längd på teamlista", + teamList.length);
+	visaTeam()
 	} else {
 		reservList.push(valdPokemon)
 		console.log(reservList);
+	}
+}
+
+function visaTeam() {
+	const pokemon1 = document.getElementById('active1')
+	const pokemon2 = document.getElementById('active2')
+	const pokemon3 = document.getElementById('active3')
+
+if(teamList.length > 0) {
+	console.log("nammnet på pokemonen är", teamList[0].name);
+	const SpecialnameHTML = `<p>${teamList[0].specialNamn}</p>`
+	const pokemonNameHTML = `<p>${teamList[0].name}</p>`
+	if(teamList[0].specialNamn !== undefined) {
+	pokemon1.innerHTML = SpecialnameHTML + pokemonNameHTML
+	} else {
+		pokemon1.innerHTML =  pokemonNameHTML
+	}
+	} else {
+		pokemon1.innerHTML = '';
+	}
+
+	if (teamList.length > 1) {
+
+	console.log("nammnet på pokemonen är", teamList[1].name);
+	const SpecialnameHTML = `<p>${teamList[1].specialNamn}</p>`
+	const pokemonNameHTML = `<p>${teamList[1].name}</p>`
+	if(teamList[1].specialNamn !== undefined) {
+	pokemon2.innerHTML = SpecialnameHTML + pokemonNameHTML
+	} else {
+		pokemon2.innerHTML =  pokemonNameHTML
+	}
+	} else {
+		pokemon2.innerHTML = '';
+	}
+
+	if (teamList.length > 2) {
+
+	console.log("nammnet på pokemonen är", teamList[2].name);
+	const SpecialnameHTML = `<p>${teamList[2].specialNamn}</p>`
+	const pokemonNameHTML = `<p>${teamList[2].name}</p>`
+	if(teamList[2].specialNamn !== undefined) {
+	pokemon3.innerHTML = SpecialnameHTML + pokemonNameHTML
+	} else {
+		pokemon3.innerHTML =  pokemonNameHTML
+	}
+	} else {
+		pokemon3.innerHTML = '';
 	}
 }
