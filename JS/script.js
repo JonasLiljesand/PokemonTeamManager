@@ -222,7 +222,14 @@ function createAndAddToReservList(reservPokemon) {
 
 	reservList.forEach(pokemon => {
 
+		// ReservUl.innerHTML = pokemon.name +' '+ pokemon.specialNamn
+
+		if(pokemon.specialNamn !== undefined) {
+	ReservUl.innerHTML = pokemon.specialNamn  +' '+ pokemon.name
+	} else {
 		ReservUl.innerHTML = pokemon.name
+	}
+
 	});
 	reservListSec.appendChild(ReservUl)
 
@@ -233,8 +240,11 @@ function kickBtnFun(pokemon2Kick) {
 	const kickBtn = document.createElement('button')
 		kickBtn.textContent = 'Ta bort från lag'
 		kickBtn.addEventListener("click", () => {
-			teamList = teamList.filter( pokemon => pokemon !== pokemon2Kick)
-
+			if(pokemon.specialNamn !== '') {
+			teamList = teamList.filter( pokemon => pokemon.specialNamn !== pokemon2Kick.specialNamn)
+			} else {
+				teamList = teamList.filter( pokemon => pokemon.id !== pokemon2Kick.id)
+			}
 
 				console.log(teamList);
 				visaTeam()
@@ -249,6 +259,3 @@ function teamSize() {
 	TeamSizeCounter.innerHTML = `<p>${teamList.length}/3</p>`
 }
 
-function addBtnFun() {
-
-}
