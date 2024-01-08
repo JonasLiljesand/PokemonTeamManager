@@ -62,9 +62,7 @@ async function fetchPokemonData() {
                 id: enskildPokemonData.id,
                 image: enskildPokemonData.sprites.front_default
 
-			// 	 sprites: {
-            // front_default: sprites.front_default,
-        	// 	},
+
             };
         });
 
@@ -86,6 +84,7 @@ async function getPokemon() {
 }
 
 getPokemon();
+pokeUI(pokemon)
 
 // function egetNamn(valdPokemon) {
 // 	console.log("egetNamn blir callat");
@@ -124,6 +123,7 @@ searchField.addEventListener("input", e => {
 					console.log(pokemon.specialNamn);
 				}
 				// teamList.push(pokemon)
+
 				addToTeam(pokemon)
 				console.log(teamList);
 			})
@@ -259,3 +259,11 @@ function teamSize() {
 	TeamSizeCounter.innerHTML = `<p>${teamList.length}/3</p>`
 }
 
+
+function pokeUI(pokemonUI) {
+let unikID = 0
+for (let i = 0; i < pokemonUI.length; i++) {
+  pokemoUI[i].unikId = `object-${unikID++}`;
+}
+return pokemonUI
+}
