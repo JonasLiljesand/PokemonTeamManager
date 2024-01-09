@@ -262,7 +262,7 @@ function kickBtnFun(pokemon2Kick) {
 			teamList = teamList.filter( pokemon => pokemon.specialNamn !== pokemon2Kick.specialNamn)
 			console.log("kickad via specialnamn");
 			} else {
-				teamList = teamList.filter( pokemon => pokemon.name.value !== pokemon2Kick.name.value)
+				teamList = teamList.filter( pokemon => pokemon.name !== pokemon2Kick.name)
 				console.log("kickad via namn");
 			}
 
