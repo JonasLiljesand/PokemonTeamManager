@@ -21,8 +21,8 @@ const reservListSec = document.getElementById('reservListaSec')
 
 let reservList = []
 let teamList = []
-let search = ''
-
+// let search = ''
+let unikID = 1
 let pokemon = []
 let filterName = []
 
@@ -76,15 +76,20 @@ async function fetchPokemonData() {
 async function getPokemon() {
     try {
         const pokemonData = await fetchPokemonData();
-        pokemon = pokemonData;
+        // pokemon = pokemonData;
+		pokemon.push(...pokemonData);
         console.log(pokemon.length);
+
     } catch (error) {
         console.error('error getting Pokemon', error);
     }
+
 }
 
+
+
 getPokemon();
-pokeUI(pokemon)
+
 
 // function egetNamn(valdPokemon) {
 // 	console.log("egetNamn blir callat");
@@ -99,7 +104,7 @@ pokeUI(pokemon)
 
 searchField.addEventListener("input", e => {
 	const value = e.target.value.toLowerCase();
-	filterName = pokemon.filter(x => x.name.includes(value))
+	filterName = pokemon.filter(x => x.name.startsWith(value))
 
 	resultsDiv.innerHTML = "";
 	//TODO: begränsa antalet matchningar till ~10-15
@@ -107,32 +112,41 @@ searchField.addEventListener("input", e => {
 		const pokeListItem = document.createElement('div');
 		pokeListItem.textContent = pokemon.name;
 
-		// const pokeImage = document.createElement('img')
-		// pokeImage = pokemon.image
 		const nameField = document.createElement('input',)
 		nameField.placeholder = `Namnge din ${pokemon.name}`
 
 		nameField.style.width = '10em'
 
+
 		const addBtn = document.createElement('button')
 		addBtn.textContent = 'lägg till i lag'
 		addBtn.addEventListener("click", () => {
-			if (nameField.value.length >= 1) {
-					console.log("nameField.value:", nameField.value);
-					pokemon.specialNamn = nameField.value
-					console.log(pokemon.specialNamn);
-				}
-				// teamList.push(pokemon)
+				console.log(`${pokemon.name} ser ut såhär innan goerUnik: `, pokemon);
+				goerUnik(pokemon)
+				if (nameField.value.length !== '') {
+						console.log("nameField.value:", nameField.value);
+						let specialNamn = nameField.value
+						nameField.value = ''
+						console.log(pokemon.specialNamn);
+						addToTeam(pokemon, specialNamn)
 
-				addToTeam(pokemon)
-				console.log(teamList);
-			})
+					} else {
+					teamList.push(pokemon)
+
+					addToTeam(pokemon)
+					pokemon.specialNamn = ''
+					console.log(pokemon.specialNamn);
+					console.log(teamList);
+					}
+				})
 
 
 		// pokeListItem.appendChild(pokeImage)
 		pokeListItem.appendChild(nameField)
 		pokeListItem.appendChild(addBtn)
 		resultsDiv.appendChild(pokeListItem)
+
+
 
 	})
 
@@ -141,8 +155,12 @@ searchField.addEventListener("input", e => {
 
 
 //Lägger till pokemon i aktivts team om plats finnns, pushar till reserv annars
-function addToTeam(valdPokemon) {
+function addToTeam(valdPokemon, namn) {
 	if(teamList.length < 3) {
+		if(namn !== '') {
+			valdPokemon.specialNamn = namn
+		}
+
 	teamList.push(valdPokemon)
 	console.log("längd på teamlista", + teamList.length);
 	visaTeam()
@@ -215,6 +233,7 @@ if(teamList.length > 0) {
 }
 
 function createAndAddToReservList(reservPokemon) {
+	goerUnik(reservPokemon)
 	reservList.push(reservPokemon)
 	console.log(reservList.length);
 
@@ -222,7 +241,6 @@ function createAndAddToReservList(reservPokemon) {
 
 	reservList.forEach(pokemon => {
 
-		// ReservUl.innerHTML = pokemon.name +' '+ pokemon.specialNamn
 
 		if(pokemon.specialNamn !== undefined) {
 	ReservUl.innerHTML = pokemon.specialNamn  +' '+ pokemon.name
@@ -240,10 +258,12 @@ function kickBtnFun(pokemon2Kick) {
 	const kickBtn = document.createElement('button')
 		kickBtn.textContent = 'Ta bort från lag'
 		kickBtn.addEventListener("click", () => {
-			if(pokemon.specialNamn !== '') {
+			if(pokemon2Kick.hasOwnProperty('specialNamn') ) {
 			teamList = teamList.filter( pokemon => pokemon.specialNamn !== pokemon2Kick.specialNamn)
+			console.log("kickad via specialnamn");
 			} else {
-				teamList = teamList.filter( pokemon => pokemon.id !== pokemon2Kick.id)
+				teamList = teamList.filter( pokemon => pokemon.name.value !== pokemon2Kick.name.value)
+				console.log("kickad via namn");
 			}
 
 				console.log(teamList);
@@ -260,10 +280,10 @@ function teamSize() {
 }
 
 
-function pokeUI(pokemonUI) {
-let unikID = 0
-for (let i = 0; i < pokemonUI.length; i++) {
-  pokemoUI[i].unikId = `object-${unikID++}`;
-}
+function goerUnik(pokemonUI) {
+	console.log('pokemonUI = ', pokemonUI);
+	console.log('unikID är nu ' + unikID);
+	pokemonUI.NyttId = unikID++;
+	console.log(pokemonUI.name + ' har UID ' + pokemonUI.NyttId);
 return pokemonUI
 }

@@ -5,6 +5,9 @@
 body {
 	background-color: #f0f0f0;
 	font-family: 'Pokemon Solid', sans-serif;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
 }
 
 .boxSection {
@@ -74,6 +77,15 @@ body {
 
 }
 
-.nameField {
-	width: 3em;
+#nameField {
+	border-color: #ff3333;
+	border-width: 1em;
+
+}
+
+#resultsDiv {
+	padding: 0.5em;
+	color: green;
+
+
 }
