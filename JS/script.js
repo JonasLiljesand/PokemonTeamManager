@@ -122,16 +122,20 @@ searchField.addEventListener("input", e => {
 		addBtn.textContent = 'lägg till i lag'
 		addBtn.addEventListener("click", () => {
 				console.log(`${pokemon.name} ser ut såhär innan goerUnik: `, pokemon);
-				goerUnik(pokemon)
+				// goerUnik(pokemon)
 				if (nameField.value.length !== '') {
 						console.log("nameField.value:", nameField.value);
 						let specialNamn = nameField.value
+						//testa struktur specialNamn[pokemon]
 						nameField.value = ''
+
 						console.log(pokemon.specialNamn);
 						addToTeam(pokemon, specialNamn)
 
 					} else {
+
 					teamList.push(pokemon)
+
 
 					addToTeam(pokemon)
 					pokemon.specialNamn = ''
@@ -155,10 +159,11 @@ searchField.addEventListener("input", e => {
 
 
 //Lägger till pokemon i aktivts team om plats finnns, pushar till reserv annars
-function addToTeam(valdPokemon, namn) {
+function addToTeam(valdPokemon, sNamn) {
+	goerUnik(valdPokemon)
 	if(teamList.length < 3) {
-		if(namn !== '') {
-			valdPokemon.specialNamn = namn
+		if(sNamn !== '') {
+			valdPokemon.specialNamn = sNamn
 		}
 
 	teamList.push(valdPokemon)
