@@ -89,3 +89,14 @@ body {
 
 
 }
+
+/* #addMsg {
+	display: inline;
+	opacity: 1;
+	transition: opacity 1s ease-out
+} */
+
+/* @keyframes msgFade {
+	0% { opacity: 0;}
+	100% { opacity: 1;}
+} */

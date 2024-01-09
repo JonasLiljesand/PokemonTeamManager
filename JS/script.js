@@ -18,6 +18,7 @@ let pokedex = document.getElementById('pokemonName')
 // const pokemon2 = document.getElementById('active2')
 // const pokemon3 = document.getElementById('active3')
 const reservListSec = document.getElementById('reservListaSec')
+const addResBtn = document.createElement('button')
 
 let reservList = []
 let teamList = []
@@ -121,33 +122,43 @@ searchField.addEventListener("input", e => {
 		const addBtn = document.createElement('button')
 		addBtn.textContent = 'lägg till i lag'
 		addBtn.addEventListener("click", () => {
-				console.log(`${pokemon.name} ser ut såhär innan goerUnik: `, pokemon);
+
+			const kopia = { ...pokemon}
+
+				console.log(`${kopia.name} ser ut såhär innan goerUnik: `, kopia);
 				// goerUnik(pokemon)
 				if (nameField.value.length !== '') {
 						console.log("nameField.value:", nameField.value);
-						let specialNamn = nameField.value
-						//testa struktur specialNamn[pokemon]
+						kopia.specialNamn = nameField.value
 						nameField.value = ''
+						console.log(kopia.specialNamn);
 
-						console.log(pokemon.specialNamn);
-						addToTeam(pokemon, specialNamn)
+
+
 
 					} else {
 
-					teamList.push(pokemon)
+					// teamList.push(pokemon)
 
-
-					addToTeam(pokemon)
-					pokemon.specialNamn = ''
-					console.log(pokemon.specialNamn);
-					console.log(teamList);
 					}
+					addToTeam(kopia)
+					addMsg.style.display = 'inline'
+					// addMsg.style.opacity ='1'
+					// addMsg.style.transition = 'opacity 1s ease-out'
+					// pokemon.specialNamn = ''
+					console.log(teamList);
+
 				})
+		const addMsg = document.createElement('p')
+		addMsg.id = 'addMsg'
+		addMsg.textContent = 'värvad!'
+		addMsg.style.display = 'none'
 
 
 		// pokeListItem.appendChild(pokeImage)
 		pokeListItem.appendChild(nameField)
 		pokeListItem.appendChild(addBtn)
+		pokeListItem.appendChild(addMsg)
 		resultsDiv.appendChild(pokeListItem)
 
 
@@ -160,11 +171,8 @@ searchField.addEventListener("input", e => {
 
 //Lägger till pokemon i aktivts team om plats finnns, pushar till reserv annars
 function addToTeam(valdPokemon, sNamn) {
-	goerUnik(valdPokemon)
+	// goerUnik(valdPokemon)
 	if(teamList.length < 3) {
-		if(sNamn !== '') {
-			valdPokemon.specialNamn = sNamn
-		}
 
 	teamList.push(valdPokemon)
 	console.log("längd på teamlista", + teamList.length);
@@ -238,23 +246,38 @@ if(teamList.length > 0) {
 }
 
 function createAndAddToReservList(reservPokemon) {
-	goerUnik(reservPokemon)
+	// goerUnik(reservPokemon)
 	reservList.push(reservPokemon)
 	console.log(reservList.length);
 
-	let ReservUl = document.createElement("ul")
+	let reservUl = document.createElement("ul")
 
 	reservList.forEach(pokemon => {
+		let reservListPokemon = document.createElement('li')
+
 
 
 		if(pokemon.specialNamn !== undefined) {
-	ReservUl.innerHTML = pokemon.specialNamn  +' '+ pokemon.name
+	reservListPokemon.innerHTML = pokemon.specialNamn  +' '+ pokemon.name
 	} else {
-		ReservUl.innerHTML = pokemon.name
+		reservListPokemon.innerHTML = pokemon.name
 	}
 
+
+	addResBtn.textContent = 'Lägg till i lag'
+	reservListSec.appendChild(reservUl)
+	reservListPokemon.appendChild(addResBtn)
+
+
+	reservUl.appendChild(reservListPokemon)
+
+
 	});
-	reservListSec.appendChild(ReservUl)
+
+
+	reservListSec.appendChild(reservUl)
+	// reservUl.appendChild(reservListPokemon)
+
 
 
 }
@@ -285,10 +308,10 @@ function teamSize() {
 }
 
 
-function goerUnik(pokemonUI) {
-	console.log('pokemonUI = ', pokemonUI);
-	console.log('unikID är nu ' + unikID);
-	pokemonUI.NyttId = unikID++;
-	console.log(pokemonUI.name + ' har UID ' + pokemonUI.NyttId);
-return pokemonUI
-}
+// function goerUnik(pokemonUI) {
+// 	console.log('pokemonUI = ', pokemonUI);
+// 	console.log('unikID är nu ' + unikID);
+// 	pokemonUI.NyttId = unikID++;
+// 	console.log(pokemonUI.name + ' har UID ' + pokemonUI.NyttId);
+// return pokemonUI
+// }
