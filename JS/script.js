@@ -252,27 +252,28 @@ function createAndAddToReservList(reservPokemon) {
 
 	let reservUl = document.createElement("ul")
 
-	reservList.forEach(pokemon => {
-		let reservListPokemon = document.createElement('li')
+	//fixa lista :<<<<<
+	// reservList.forEach(pokemon => {
+	// 	let reservListPokemon = document.createElement('li')
 
 
 
 		if(pokemon.specialNamn !== undefined) {
-	reservListPokemon.innerHTML = pokemon.specialNamn  +' '+ pokemon.name
+	reservUl.innerHTML = reservPokemon.specialNamn  +' '+ reservPokemon.name
 	} else {
-		reservListPokemon.innerHTML = pokemon.name
+		reservUl.innerHTML = reservPokemon.name
 	}
 
 
 	addResBtn.textContent = 'Lägg till i lag'
 	reservListSec.appendChild(reservUl)
-	reservListPokemon.appendChild(addResBtn)
+	// reservul.appendChild(addResBtn)
 
 
-	reservUl.appendChild(reservListPokemon)
+	// reservUl.appendChild(reservListPokemon)
 
 
-	});
+
 
 
 	reservListSec.appendChild(reservUl)
@@ -286,7 +287,7 @@ function kickBtnFun(pokemon2Kick) {
 	const kickBtn = document.createElement('button')
 		kickBtn.textContent = 'Ta bort från lag'
 		kickBtn.addEventListener("click", () => {
-			if(pokemon2Kick.hasOwnProperty('specialNamn') ) {
+			if(pokemon2Kick.hasOwnProperty('specialNamn') && pokemon2Kick.specialNamn !== '' ) {
 			teamList = teamList.filter( pokemon => pokemon.specialNamn !== pokemon2Kick.specialNamn)
 			console.log("kickad via specialnamn");
 			} else {
