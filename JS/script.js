@@ -40,11 +40,7 @@ searchViewBtn.addEventListener("click", () => {
 	viewTeamSec.style.display = 'none'
 	viewReservSec.style.display = 'none'})
 
-// reservViewBtn.addEventListener("click", () => {
-// 	viewSearchAndBenchSec.style.display = 'none'
-// 	viewTeamSec.style.display = 'none'
-// 	viewReservSec.style.display = 'block'
-// 	})
+
 
 
 
@@ -108,9 +104,7 @@ searchField.addEventListener("input", e => {
 	const value = e.target.value.toLowerCase();
 	filterName = pokemon.filter(x => x.name.startsWith(value))
 
-	if(listLimit >= 5){
-		return
-	} else {
+
 
 	resultsDiv.innerHTML = "";
 	//TODO: begränsa antalet matchningar till ~10-15
@@ -130,7 +124,6 @@ searchField.addEventListener("input", e => {
 
 			const kopia = { ...pokemon}
 
-				console.log(`${kopia.name} ser ut såhär innan goerUnik: `, kopia);
 				// alla pokemons med samma specialNamn kickas om en kickas, TODO: Tillåt inte att flera heter samma
 				if (nameField.value.length !== '') {
 						console.log("nameField.value:", nameField.value);
@@ -158,19 +151,14 @@ searchField.addEventListener("input", e => {
 		addMsg.style.display = 'none'
 
 
-
-
 		pokeListItem.appendChild(nameField)
 		pokeListItem.appendChild(addBtn)
 		pokeListItem.appendChild(addMsg)
 		resultsDiv.appendChild(pokeListItem)
 
-		listLimit++
-
-
 
 		})
-	}
+
 })
 
 
@@ -184,6 +172,7 @@ function addToTeam(valdPokemon, sNamn) {
 	console.log("längd på teamlista", + teamList.length);
 	visaTeam()
 	teamSize()
+	CheckTeamBox()
 
 	} else {
 		createAndAddToReservList(valdPokemon)
@@ -304,7 +293,7 @@ function kickBtnFun(pokemon2Kick) {
 				console.log(teamList);
 				visaTeam()
 				teamSize()
-				if
+				CheckTeamBox()
 
 			})
 
@@ -324,3 +313,16 @@ function teamSize() {
 // 	console.log(pokemonUI.name + ' har UID ' + pokemonUI.NyttId);
 // return pokemonUI
 // }
+
+function CheckTeamBox(){
+	if(active1.textContent === ''){
+					active1.innerHTML = '<p>Lagmedlem 1</p>'
+				}
+				if(active2.textContent === ''){
+					active2.innerHTML = '<p>Lagmedlem 2</p>'
+				}
+				if(active3.textContent === ''){
+					active3.innerHTML = '<p>Lagmedlem 3</p>'
+				}
+
+}

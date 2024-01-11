@@ -8,7 +8,7 @@ body {
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
-
+	font-family: 'Press Start 2P';
 
 	background-image: url('images/_eb4617ee-d835-4a97-84fb-97201e17da95.jpg');
 	background-size: cover;
@@ -70,6 +70,7 @@ body {
 	background-color: #f9f9f9;
 	padding: 1em;
 	margin-top: 1em;
+	font-family: 'Press Start 2P';
 }
 
 .teamPokemonSection {
