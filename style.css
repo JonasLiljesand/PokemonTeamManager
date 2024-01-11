@@ -6,13 +6,16 @@ body {
 	background-color: #08637a;
 	font-family: 'Pokemon Solid', sans-serif;
 	display: flex;
+	flex-wrap: wrap;
 	flex-direction: column;
-	justify-content: flex-start;
+	justify-content: center;
+	align-items: center;
 	font-family: 'Press Start 2P';
 
 	background-image: url('images/_eb4617ee-d835-4a97-84fb-97201e17da95.jpg');
 	background-size: cover;
 	background-repeat: no-repeat;
+	background-attachment: fixed;
 	max-height: 3000px;
 	/* background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), #ffffff),
 		url('images/_eb4617ee-d835-4a97-84fb-97201e17da95.jpg'); */
@@ -20,13 +23,15 @@ body {
 }
 
 .boxSection {
+
 	padding: 0.5em;
-	border: 0.2em solid #ffcc00;
+	border: 0.3em solid #ffcc00;
 	justify-content: center;
+
 	border-radius: 0.5em;
 	background-color: #f9f9f9;
-	opacity: 92%;
-	max-width: 700px;
+	opacity: 90%;
+	min-width: 330px;
 }
 
 #menuButtonSection {
@@ -39,15 +44,20 @@ body {
 #menuButtonSection button {
 	margin: 1em;
 	padding: 1em;
+	width: 9em;
 	background-color: #ff6666;
 	color: #fff;
 	border: none;
 	border-radius: 0.3em;
 	cursor: pointer;
-	font-weight: bold;
+	/* font-weight: bold; */
+	font-family: 'Bangers' !important;
+	letter-spacing: 0.15em;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 	transition: box-shadow 0.3s ease;
 	background-image: linear-gradient(to bottom, #ff6666, #ff3333);
+
+
 }
 
 #menuButtonSection button:hover {
@@ -58,9 +68,6 @@ body {
 	background-image: linear-gradient(to bottom, #3399ff, #0066cc);
 }
 
-#searchViewButton {
-
-}
 
 #activeTeamSection {
 	display: flex;
@@ -73,10 +80,14 @@ body {
 	font-family: 'Press Start 2P';
 }
 
+#activeTeamSection section {
+	margin: 0.2em;
+}
+
 .teamPokemonSection {
 	display: flex, none;
-	border: 0.2em solid #ffcc00;
-	padding: 2em;
+	/* border: 0.2em solid #ffcc00; */
+	/* padding: 2em; */
 	margin: 1em;
 	background-color: #ffffff;
 }
@@ -95,26 +106,42 @@ body {
 
 }
 
+#PokemonSearchByName {
+
+
+}
+
 #resultsDiv {
 	padding: 0.5em;
 	color: green;
 	max-height: 40em;
 	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+
+	justify-items: center;
 
 
 
 }
 
-#pokemonSearchByName {
+/* #pokemonSearchByName {
 	width: max-content;
-}
+} */
 
-#addMsg.fade-out {
+/* #addMsg.fade-out {
 opacity: 0;
 transition: opacity 1s ease-out;
-}
+} */
 
 /* @keyframes msgFade {
 	0% { opacity: 0;}
 	100% { opacity: 1;}
+} */
+/*
+@media screen and(max-width: 500px) {
+	.boxSection {
+		width: 350px;
+	}
+
 } */

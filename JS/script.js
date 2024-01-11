@@ -14,11 +14,12 @@ const searchField = document.getElementById('pokemonSearchByName')
 const resultsDiv = document.getElementById("resultsDiv");
 const active1 = document.getElementById('active1')
 let pokedex = document.getElementById('pokemonName')
-// const pokemon1 = document.getElementById('active1')
-// const pokemon2 = document.getElementById('active2')
-// const pokemon3 = document.getElementById('active3')
+const pokemon1 = document.getElementById('active1')
+const pokemon2 = document.getElementById('active2')
+const pokemon3 = document.getElementById('active3')
 const reservListSec = document.getElementById('reservListaSec')
 const addResBtn = document.createElement('button')
+
 
 let reservList = []
 let teamList = []
@@ -89,15 +90,6 @@ async function getPokemon() {
 getPokemon();
 
 
-// function egetNamn(valdPokemon) {
-// 	console.log("egetNamn blir callat");
-// 	console.log("nameField.value:", nameField.value);
-// 	if (nameField.value.length >= 1) {
-// 		valdPokemon.specialNamn = nameField.value
-// 		console.log(valdPokemon.specialNamn);
-// 	}
-// }
-
 
 
 searchField.addEventListener("input", e => {
@@ -110,6 +102,8 @@ searchField.addEventListener("input", e => {
 	//TODO: begränsa antalet matchningar till ~10-15
 	filterName.forEach(pokemon => {
 		const pokeListItem = document.createElement('div');
+		const pokeImgHTML = `<img src="${pokemon.image}"/>`
+		pokeListItem.textContent = pokeImgHTML;
 		pokeListItem.textContent = pokemon.name;
 
 		const nameField = document.createElement('input',)
@@ -136,7 +130,7 @@ searchField.addEventListener("input", e => {
 
 					} else {
 
-					// teamList.push(pokemon)
+					teamList.push(pokemon)
 
 					}
 					addToTeam(kopia)
@@ -155,6 +149,8 @@ searchField.addEventListener("input", e => {
 		pokeListItem.appendChild(addBtn)
 		pokeListItem.appendChild(addMsg)
 		resultsDiv.appendChild(pokeListItem)
+
+		pokeListItem.style.padding = '0.2em'
 
 
 		})
@@ -180,9 +176,7 @@ function addToTeam(valdPokemon, sNamn) {
 }
 
 function visaTeam() {
-	const pokemon1 = document.getElementById('active1')
-	const pokemon2 = document.getElementById('active2')
-	const pokemon3 = document.getElementById('active3')
+
 
 if(teamList.length > 0) {
 	console.log("nammnet på pokemonen är", teamList[0].name);
@@ -265,17 +259,6 @@ function createAndAddToReservList(reservPokemon) {
 	// reservul.appendChild(addResBtn)
 
 
-	// reservUl.appendChild(reservListPokemon)
-
-
-
-
-
-	reservListSec.appendChild(reservUl)
-	// reservUl.appendChild(reservListPokemon)
-
-
-
 }
 
 function kickBtnFun(pokemon2Kick) {
@@ -305,14 +288,6 @@ function teamSize() {
 	TeamSizeCounter.innerHTML = `<p>${teamList.length}/3</p>`
 }
 
-
-// function goerUnik(pokemonUI) {
-// 	console.log('pokemonUI = ', pokemonUI);
-// 	console.log('unikID är nu ' + unikID);
-// 	pokemonUI.NyttId = unikID++;
-// 	console.log(pokemonUI.name + ' har UID ' + pokemonUI.NyttId);
-// return pokemonUI
-// }
 
 function CheckTeamBox(){
 	if(active1.textContent === ''){
