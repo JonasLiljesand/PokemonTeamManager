@@ -132,6 +132,10 @@ body {
 
 }
 
+#pokeListItem div {
+
+}
+
 
 #addBtn {
 		margin: 1em;
@@ -145,6 +149,9 @@ body {
 		font-size: 50%;
 		cursor: pointer;
 		letter-spacing: 0.15em;
+		/* position: relative;
+		bottom: 0;
+		left: 0; */
 
 
 

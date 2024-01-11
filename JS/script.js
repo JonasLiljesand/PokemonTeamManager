@@ -21,6 +21,7 @@ const reservListSec = document.getElementById('reservListaSec')
 const addResBtn = document.createElement('button')
 
 
+
 let reservList = []
 let teamList = []
 let pokemon = []
@@ -133,6 +134,9 @@ searchField.addEventListener("input", e => {
 		addMsg.style.display = 'none'
 
 
+
+		pokeListItem.classList.add('boxSection')
+		pokeListItem.id = 'pokeListItem'
 		pokeListItem.appendChild(nameField)
 		pokeListItem.appendChild(addBtn)
 		pokeListItem.appendChild(addMsg)
