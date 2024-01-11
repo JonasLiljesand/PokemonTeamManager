@@ -23,28 +23,19 @@ const addResBtn = document.createElement('button')
 
 let reservList = []
 let teamList = []
-// let search = ''
-let unikID = 1
 let pokemon = []
 let filterName = []
-let listLimit = 0
 
 
 teamViewbtn.addEventListener("click", () => {
 	viewSearchAndBenchSec.style.display = 'none'
 	viewTeamSec.style.display = 'block'
-	viewReservSec.style.display = 'none'
 })
 
 searchViewBtn.addEventListener("click", () => {
 	viewSearchAndBenchSec.style.display = 'block'
 	viewTeamSec.style.display = 'none'
-	viewReservSec.style.display = 'none'})
-
-
-
-
-
+})
 
 
 async function fetchPokemonData() {
@@ -53,22 +44,21 @@ async function fetchPokemonData() {
         const data = await resp.json();
 
         const pokePromises = data.results.map(async pokemon => {
-            const pokemonResp = await fetch(pokemon.url);
-            const enskildPokemonData = await pokemonResp.json();
+            const pokemonResp = await fetch(pokemon.url)
+            const enskildPokemonData = await pokemonResp.json()
 
             return {
                 name: enskildPokemonData.name,
                 id: enskildPokemonData.id,
                 image: enskildPokemonData.sprites.front_default
 
-
             };
         });
 
-        const pokemonData = await Promise.all(pokePromises);
+        const pokemonData = await Promise.all(pokePromises)
         return pokemonData;
     } catch (error) {
-        console.error('error fetching data', error);
+        console.error('error fetching data', error)
     }
 }
 
@@ -102,8 +92,6 @@ searchField.addEventListener("input", e => {
 	//TODO: begränsa antalet matchningar till ~10-15
 	filterName.forEach(pokemon => {
 		const pokeListItem = document.createElement('div');
-		const pokeImgHTML = `<img src="${pokemon.image}"/>`
-		pokeListItem.textContent = pokeImgHTML;
 		pokeListItem.textContent = pokemon.name;
 
 		const nameField = document.createElement('input',)
@@ -150,7 +138,10 @@ searchField.addEventListener("input", e => {
 		pokeListItem.appendChild(addMsg)
 		resultsDiv.appendChild(pokeListItem)
 
-		pokeListItem.style.padding = '0.2em'
+		pokeListItem.classList.add('boxSection')
+		pokeListItem.id = 'pokeListItem'
+
+		addBtn.id = 'addBtn'
 
 
 		})
@@ -160,7 +151,7 @@ searchField.addEventListener("input", e => {
 
 
 //Lägger till pokemon i aktivts team om plats finnns, pushar till reserv annars
-function addToTeam(valdPokemon, sNamn) {
+function addToTeam(valdPokemon) {
 	// goerUnik(valdPokemon)
 	if(teamList.length < 3) {
 
@@ -176,7 +167,7 @@ function addToTeam(valdPokemon, sNamn) {
 }
 
 function visaTeam() {
-
+console.log(teamList);
 
 if(teamList.length > 0) {
 	console.log("nammnet på pokemonen är", teamList[0].name);
@@ -234,6 +225,8 @@ if(teamList.length > 0) {
 
 }
 
+
+
 function createAndAddToReservList(reservPokemon) {
 	// goerUnik(reservPokemon)
 	reservList.push(reservPokemon)
@@ -241,16 +234,14 @@ function createAndAddToReservList(reservPokemon) {
 
 	let reservUl = document.createElement("ul")
 
-	//fixa lista :<<<<<
-	// reservList.forEach(pokemon => {
-	// 	let reservListPokemon = document.createElement('li')
+
 
 
 
 		if(pokemon.specialNamn !== undefined) {
 	reservUl.innerHTML = reservPokemon.specialNamn  +' '+ reservPokemon.name
 	} else {
-		reservUl.innerHTML = reservPokemon.name
+		reservUl.innerHTML = (pokeImgHTML = `<img src="${reservPokemon.image}"/>`), reservPokemon.name
 	}
 
 
