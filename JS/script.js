@@ -26,6 +26,7 @@ let teamList = []
 let unikID = 1
 let pokemon = []
 let filterName = []
+let listLimit = 0
 
 
 teamViewbtn.addEventListener("click", () => {
@@ -107,6 +108,10 @@ searchField.addEventListener("input", e => {
 	const value = e.target.value.toLowerCase();
 	filterName = pokemon.filter(x => x.name.startsWith(value))
 
+	if(listLimit >= 5){
+		return
+	} else {
+
 	resultsDiv.innerHTML = "";
 	//TODO: begränsa antalet matchningar till ~10-15
 	filterName.forEach(pokemon => {
@@ -126,7 +131,7 @@ searchField.addEventListener("input", e => {
 			const kopia = { ...pokemon}
 
 				console.log(`${kopia.name} ser ut såhär innan goerUnik: `, kopia);
-				// goerUnik(pokemon)
+				// alla pokemons med samma specialNamn kickas om en kickas, TODO: Tillåt inte att flera heter samma
 				if (nameField.value.length !== '') {
 						console.log("nameField.value:", nameField.value);
 						kopia.specialNamn = nameField.value
@@ -143,28 +148,29 @@ searchField.addEventListener("input", e => {
 					}
 					addToTeam(kopia)
 					addMsg.style.display = 'inline'
-					// addMsg.style.opacity ='1'
-					// addMsg.style.transition = 'opacity 1s ease-out'
-					// pokemon.specialNamn = ''
+					// addMsg.classList.add('fade.out')
 					console.log(teamList);
 
 				})
 		const addMsg = document.createElement('p')
 		addMsg.id = 'addMsg'
-		addMsg.textContent = 'värvad!'
+		addMsg.textContent = 'Fångad!'
 		addMsg.style.display = 'none'
 
 
-		// pokeListItem.appendChild(pokeImage)
+
+
 		pokeListItem.appendChild(nameField)
 		pokeListItem.appendChild(addBtn)
 		pokeListItem.appendChild(addMsg)
 		resultsDiv.appendChild(pokeListItem)
 
+		listLimit++
 
 
-	})
 
+		})
+	}
 })
 
 
@@ -298,6 +304,8 @@ function kickBtnFun(pokemon2Kick) {
 				console.log(teamList);
 				visaTeam()
 				teamSize()
+				if
+
 			})
 
 		return kickBtn

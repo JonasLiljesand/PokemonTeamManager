@@ -3,11 +3,20 @@
 }
 
 body {
-	background-color: #f0f0f0;
+	background-color: #08637a;
 	font-family: 'Pokemon Solid', sans-serif;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
+
+
+	background-image: url('images/_eb4617ee-d835-4a97-84fb-97201e17da95.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+	max-height: 3000px;
+	/* background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), #ffffff),
+		url('images/_eb4617ee-d835-4a97-84fb-97201e17da95.jpg'); */
+
 }
 
 .boxSection {
@@ -16,12 +25,15 @@ body {
 	justify-content: center;
 	border-radius: 0.5em;
 	background-color: #f9f9f9;
+	opacity: 92%;
+	max-width: 700px;
 }
 
 #menuButtonSection {
 	display: flex;
 	flex-wrap: nowrap;
 	justify-content: center;
+
 }
 
 #menuButtonSection button {
@@ -39,7 +51,7 @@ body {
 }
 
 #menuButtonSection button:hover {
-	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 10px 16px rgba(0, 0, 0, 0.4);
 }
 
 #teamViewButton {
@@ -57,11 +69,11 @@ body {
 	border-radius: 0.5em;
 	background-color: #f9f9f9;
 	padding: 1em;
-	margin: 1em;
+	margin-top: 1em;
 }
 
 .teamPokemonSection {
-	display: flex;
+	display: flex, none;
 	border: 0.2em solid #ffcc00;
 	padding: 2em;
 	margin: 1em;
@@ -69,11 +81,10 @@ body {
 }
 
 #searchAndBench {
-	display: none;
+	display: flex;
+	margin-top: 0.5em;
 	justify-content: center;
-}
-
-.pokemonSearchByName {
+	align-items: center;
 
 }
 
@@ -86,15 +97,21 @@ body {
 #resultsDiv {
 	padding: 0.5em;
 	color: green;
+	max-height: 40em;
+	overflow: hidden;
+
 
 
 }
 
-/* #addMsg {
-	display: inline;
-	opacity: 1;
-	transition: opacity 1s ease-out
-} */
+#pokemonSearchByName {
+	width: max-content;
+}
+
+#addMsg.fade-out {
+opacity: 0;
+transition: opacity 1s ease-out;
+}
 
 /* @keyframes msgFade {
 	0% { opacity: 0;}
