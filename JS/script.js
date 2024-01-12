@@ -93,6 +93,8 @@ searchField.addEventListener("input", e => {
 	//TODO: begränsa antalet matchningar till ~10-15
 	filterName.forEach(pokemon => {
 		const pokeListItem = document.createElement('div');
+		let pokeListImg = document.createElement("img");
+		pokeListImg.src = pokemon.image
 		pokeListItem.textContent = pokemon.name;
 
 		const nameField = document.createElement('input',)
@@ -114,9 +116,6 @@ searchField.addEventListener("input", e => {
 						nameField.value = ''
 						console.log(kopia.specialNamn);
 
-
-
-
 					} else {
 
 					teamList.push(pokemon)
@@ -133,10 +132,9 @@ searchField.addEventListener("input", e => {
 		addMsg.textContent = 'Fångad!'
 		addMsg.style.display = 'none'
 
-
-
 		pokeListItem.classList.add('boxSection')
 		pokeListItem.id = 'pokeListItem'
+		pokeListItem.appendChild(pokeListImg)
 		pokeListItem.appendChild(nameField)
 		pokeListItem.appendChild(addBtn)
 		pokeListItem.appendChild(addMsg)
@@ -156,6 +154,7 @@ searchField.addEventListener("input", e => {
 
 //Lägger till pokemon i aktivts team om plats finnns, pushar till reserv annars
 function addToTeam(valdPokemon) {
+	console.log('valdpokemon=' + valdPokemon.name);
 	// goerUnik(valdPokemon)
 	if(teamList.length < 3) {
 
@@ -172,6 +171,10 @@ function addToTeam(valdPokemon) {
 
 function visaTeam() {
 console.log(teamList);
+
+
+
+
 
 if(teamList.length > 0) {
 	console.log("nammnet på pokemonen är", teamList[0].name);
@@ -237,17 +240,26 @@ function createAndAddToReservList(reservPokemon) {
 	console.log(reservList.length);
 
 	let reservUl = document.createElement("ul")
+	let pokeImg = document.createElement("img");
+	pokeImg.src = reservPokemon.image
+	let reservRad = document.createElement('p')
+	reservRad.innerHTML = reservPokemon.name
 
 
 
+		if(reservPokemon.specialNamn !== undefined) {
 
+		reservRad.innerHTML = reservPokemon.specialNamn  +' '+ reservPokemon.name
 
-		if(pokemon.specialNamn !== undefined) {
-	reservUl.innerHTML = reservPokemon.specialNamn  +' '+ reservPokemon.name
-	} else {
-		reservUl.innerHTML = (pokeImgHTML = `<img src="${reservPokemon.image}"/>`), reservPokemon.name
+		} else {
+
+		reservRad.innerHTML = reservPokemon.name
+
 	}
+	// (pokeImgHTML = `<img src="${reservPokemon.image}"/>`),
 
+	reservUl.appendChild(pokeImg)
+		reservUl.appendChild(reservRad)
 
 	addResBtn.textContent = 'Lägg till i lag'
 	reservListSec.appendChild(reservUl)
